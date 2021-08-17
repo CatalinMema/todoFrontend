@@ -5,21 +5,27 @@
 }
 
 body {
-  background: linear-gradient(-70deg, rgb(36, 3, 104), #042846, #730d92, #042846);
-	background-size: 400% 400%;
-	animation: gradient 7s ease-in-out infinite;
+  background: linear-gradient(
+    -70deg,
+    rgb(36, 3, 104),
+    #042846,
+    #730d92,
+    #042846
+  );
+  background-size: 400% 400%;
+  animation: gradient 7s ease-in infinite;
   overflow-y: hidden;
 }
 @keyframes gradient {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .todo-app {
@@ -40,12 +46,12 @@ h1 {
   font-size: 24px;
 }
 
-p{
+p {
   color: #fff;
   font-size: 20px;
 }
 
-.completeLine{
+.completeLine {
   text-decoration: line-through;
 }
 .complete {
@@ -55,10 +61,9 @@ p{
 .todo-form {
   margin-bottom: 1em;
 }
-.add_todo_container{
+.add_todo_container {
   display: flex;
   justify-content: center;
-  
 }
 
 .todo-input {
@@ -80,19 +85,19 @@ p{
   width: 320px;
   background: transparent;
   color: #fff;
-
 }
-.todo_buttons{
+.todo_buttons {
   display: flex;
   flex-direction: column;
   height: 7em;
   margin-left: 1em;
 }
-::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: white;
   opacity: 0.6; /* Firefox */
 }
-.search_reset_container{
+.search_reset_container {
   display: flex;
   justify-content: space-between;
   width: 90%;
@@ -112,7 +117,7 @@ p{
   color: #fff;
 }
 
-.todo-input-search-page{
+.todo-input-search-page {
   padding: 14px 32px 14px 16px;
   border-radius: 4px 0 0 4px;
   border: 2px solid #5d0cff;
@@ -122,7 +127,7 @@ p{
   background: transparent;
   color: #fff;
 }
-.show-all{
+.show-all {
   display: flex;
   justify-content: center;
 }
@@ -130,7 +135,7 @@ p{
 .todo-input::placeholder {
   color: #e2e2e2;
 }
-.date_input{ 
+.date_input {
   padding: 1.1em 0.4em;
   border: none;
   border-radius: 0 4px 4px 0;
@@ -139,7 +144,7 @@ p{
     rgba(93, 12, 255, 1) 0%,
     rgba(155, 0, 250, 1) 100%
   );
-  color:white;
+  color: white;
   outline: none;
 }
 .todo-button {
@@ -176,19 +181,20 @@ p{
   flex-direction: row;
   position: relative;
 }
-.todo_text{
-  cursor:pointer;
+.todo_text {
+  cursor: pointer;
   display: flex;
   justify-content: left;
   flex: 1;
   overflow: hidden;
   white-space: nowrap;
 }
-.todo_text, .txt_todo{
-  transition: 2s ease-in;     
+.todo_text,
+.txt_todo {
+  transition: 2s ease-in;
 }
-.todo_text:hover .txt_todo{
-  margin-left: -11em;
+.todo_text:hover .txt_todo {
+  margin-left: -19.5em;
 }
 .todo-row {
   display: flex;
@@ -247,26 +253,24 @@ p{
   color: #fff;
 }
 
-
-.navigation_buttons{
+.navigation_buttons {
   display: flex;
   justify-content: space-between;
 }
-.btn_prev{
+.btn_prev {
   margin-right: 20px;
-  padding:10px;
+  padding: 10px;
 }
 
-.btn_next{
+.btn_next {
   margin-left: 20px;
 }
 
 ::-webkit-calendar-picker-indicator {
   filter: invert(1);
   margin-left: -10px;
-  
 }
- 
+
 textarea {
   resize: none;
   line-height: 1.8em;
@@ -274,4 +278,41 @@ textarea {
 
 textarea::-webkit-scrollbar {
   display: none;
+}
+
+.prev {
+  min-width: 7vw;
+  margin-top: 15px;
+  margin-left: 26px;
+  margin-bottom: 15px;
+}
+
+.opacity0 {
+  opacity: 0;
+}
+
+.next {
+  min-width: 7vw;
+  margin-top: 15px;
+  margin-right: 26px;
+  margin-bottom: 15px;
+  color: white;
+}
+
+.not_found {
+  padding-top: 20em;
+}
+
+.nothing_planned {
+  padding-top: 12em;
+}
+
+.todo_text_container {
+  display: flex;
+  flex: 0.98;
+  justify-content: space-between;
+}
+
+.todos_container {
+  min-height: 33em;
 }

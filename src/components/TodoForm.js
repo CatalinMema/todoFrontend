@@ -1,87 +1,90 @@
-import React, { useState, useEffect, useRef } from 'react';
-import {ADD_TODO, UPDATE,UPDATE_TODO} from '../utils/constants';
-
-function TodoForm({edit,onChangeSetDate,onSubmit,dateOfTodo}) {
-  const [input, setInput] = useState(edit ? edit.value : '');
-  const [inputdate, setInputDate] = useState(dateOfTodo);
-  const inputRef = useRef(null);
+import React, { useState, useEffect } from "react";
+import { ADD_TODO, UPDATE, UPDATE_TODO } from "../utils/constants";
+import { useForm } from "react-hook-form";
+const TodoForm = ({ edit, onChangeDate, sendData, dateOfTodo }) => {
+  // const [input, setInput] = useState(edit ? edit.value : "");
+  const [inputDate, setInputDate] = useState(dateOfTodo);
+  const {
+    handleSubmit,
+    register,
+    reset,
+    formState: { errors },
+  } = useForm();
 
   useEffect(() => {
-    inputRef.current.focus();
-  });
-  useEffect(()=>{
-    setInputDate(dateOfTodo)
-  },[dateOfTodo])
- 
-   
-  const handleChange = e => {
-    setInput(e.target.value);
-  };
+    setInputDate(dateOfTodo);
+  }, [dateOfTodo]);
 
-  const handleDateChange = e => {
+  // const handleChange = (e) => {
+  //   setInput(e.target.value);
+  // };
+
+  const handleDateChange = (e) => {
     setInputDate(e.target.value);
-    onChangeSetDate(e.target.value);
+    onChangeDate(e.target.value);
   };
-  
-  const handleSubmit = e => {
-    e.preventDefault();
 
-    onSubmit({
-      todo_text: input,
-      date_todo: inputdate,
-      completed_todo: false
+  const handleSubmitForm = (formData) => {
+    sendData({
+      text: formData.text_todo,
+      date: inputDate,
+      done: false,
     });
-    setInput('');
+    reset();
   };
-  
+
   return (
-    <form onSubmit={handleSubmit} className='todo-form'>
+    <form className="todo-form">
       {edit ? (
         <>
           <input
-            placeholder={UPDATE_TODO}
-            value={input}
-            onChange={handleChange}
-            name='text'
-            ref={inputRef}
-            className='todo-input-update edit'
+            placeholder={errors.text_todo ? "Text is required" : UPDATE_TODO}
+            name="text_todo"
+            className="todo-input-update edit"
+            {...register("text_todo", { required: true })}
           />
-          <button onClick={handleSubmit} className='todo-button edit'>
+          <button
+            onClick={handleSubmit(handleSubmitForm)}
+            className="todo-button edit"
+          >
             {UPDATE}
           </button>
         </>
       ) : (
         <div className="add_todo_container">
           <div>
-          <textarea
-            placeholder={ADD_TODO}
-            value={input}
-            onChange={handleChange}
-            name='text'
-            className='todo-input'
-            ref={inputRef}
-            maxLength="81"
-          />
+            <textarea
+              placeholder={errors.text_todo ? "Text is required" : ADD_TODO}
+              name="text_todo"
+              className="todo-input"
+              maxLength="81"
+              {...register("text_todo", { required: true })}
+            />
+
+            {/* {errors.text_todo && <p> Text is required! </p>} */}
           </div>
           <div className="todo_buttons">
-          {/* <button className='todo-button'>
+            {/* <button className='todo-button'>
             {DATE}
           </button> */}
-          <input type="date" className='date_input'
-          value={inputdate}
-          onChange={handleDateChange}
-          
-       />
-
-          <br />
-          <button onClick={handleSubmit} className='todo-button'>
-            {ADD_TODO}
-          </button>
+            <input
+              type="date"
+              className="date_input"
+              value={inputDate}
+              onChange={handleDateChange}
+            />
+            <br />
+            <button
+              onClick={handleSubmit(handleSubmitForm)}
+              className="todo-button"
+            >
+              {ADD_TODO}
+            </button>
           </div>
         </div>
       )}
     </form>
   );
-}
+};
 
 export default TodoForm;
