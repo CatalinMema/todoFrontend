@@ -10,7 +10,7 @@ const Todos = ({
   completeTodo,
   dateOfTodo,
 }) => {
-  const todosList = todos.map((todo, index) => (
+  const todosList = todos?.map((todo, index) => (
     <div className={todo.done ? "todo-row complete" : "todo-row"} key={index}>
       <div
         className="todo_text"

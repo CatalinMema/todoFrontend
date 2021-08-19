@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import TodoForm from "./TodoForm";
-import axios from "axios";
+import axios from "../axios";
 import {
   ADD_SOME,
   ALL,
@@ -46,7 +46,7 @@ const TodoList = () => {
       const res = await axios.get(`/todos/search/${input}/${nrSkips}`);
       setSearchTodos(res.data);
     };
-    fetchData();
+    if (input) fetchData();
   }, [input, nrSkips]);
 
   const getSearchTodo = async (search) => {
